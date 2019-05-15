@@ -1,0 +1,40 @@
+# meta
+exp_name: stgan_128_10
+model_name: stgan
+mode: train
+cuda: true
+ngpu: 2
+
+# data
+dataset: celeba
+data_root: /new_disk1/xujl/datasets/CelebA/
+crop_size: 178
+image_size: 128
+
+# model
+g_conv_dim: 64
+d_conv_dim: 64
+d_fc_dim: 1024
+g_layers: 5
+d_layers: 5
+attrs: ['Bangs', 'Blond_Hair', 'Brown_Hair', 'Bushy_Eyebrows', 'Eyeglasses', 'Male', 'Mustache', 'Pale_Skin', 'Smiling', 'Young']
+checkpoint: ~
+
+# training
+batch_size: 32
+beta1: 0.5
+beta2: 0.999
+g_lr: 0.0001
+d_lr: 0.0001
+n_critic: 5
+lambda_gp: 10
+lambda1: 1
+lambda2: 10
+lambda3: 100
+max_iters: 200000
+lr_decay_iters: 100000
+
+# steps:
+summary_step: 20
+sample_step: 1000
+checkpoint_step: 10000

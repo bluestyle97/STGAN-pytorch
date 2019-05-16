@@ -26,7 +26,7 @@ Please download the [CelebA](http://openaccess.thecvf.com/content_iccv_2015/pape
 │       └── ...
 ```
 
-### Training
+## Training
 
 - For quickly start, you can simply use the following command to train:
 
@@ -70,3 +70,11 @@ Please download the [CelebA](http://openaccess.thecvf.com/content_iccv_2015/pape
   - `summary_step`: iteration steps per summary operation with tensorboardX.
   - `sample_step`: iteration steps per sampling operation.
   - `checkpoint_step`: iteration steps per checkpoint saving operation.
+
+## Acknowledgements
+
+This code refers to the following two projects
+
+[1] [TensorFlow implementation of STGAN](https://github.com/csmliu/STGAN) 
+
+[2] [PyTorch implementation of StarGAN](https://github.com/yunjey/stargan)

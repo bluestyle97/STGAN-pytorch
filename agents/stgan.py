@@ -61,15 +61,19 @@ class STGANAgent(object):
         torch.save(D_state, os.path.join(self.config.checkpoint_dir, D_filename))
 
     def load_checkpoint(self):
-        if self.config.checkpoint is None:
+                if self.config.checkpoint is None:
+            self.G.to(self.device)
+            self.D.to(self.device)
             return
         G_filename = 'G_{}.pth.tar'.format(self.config.checkpoint)
         D_filename = 'D_{}.pth.tar'.format(self.config.checkpoint)
         G_checkpoint = torch.load(os.path.join(self.config.checkpoint_dir, G_filename))
         D_checkpoint = torch.load(os.path.join(self.config.checkpoint_dir, D_filename))
+        G_to_load = {k.replace('module.', ''): v for k, v in G_checkpoint['state_dict'].items()}
+        D_to_load = {k.replace('module.', ''): v for k, v in D_checkpoint['state_dict'].items()}
         self.current_iteration = self.config.checkpoint
-        self.G.load_state_dict(G_checkpoint['state_dict'])
-        self.D.load_state_dict(D_checkpoint['state_dict'])
+        self.G.load_state_dict(G_to_load)
+        self.D.load_state_dict(D_to_load)
         self.G.to(self.device)
         self.D.to(self.device)
         self.optimizer_G.load_state_dict(G_checkpoint['optimizer'])
@@ -141,8 +145,6 @@ class STGANAgent(object):
         self.lr_scheduler_D = optim.lr_scheduler.StepLR(self.optimizer_D, step_size=self.config.lr_decay_iters, gamma=0.1)
 
         self.load_checkpoint()
-        self.G.to(self.device)
-        self.D.to(self.device)
         if self.cuda and self.config.ngpu > 1:
             self.G = nn.DataParallel(self.G, device_ids=list(range(self.config.ngpu)))
             self.D = nn.DataParallel(self.D, device_ids=list(range(self.config.ngpu)))
@@ -152,8 +154,8 @@ class STGANAgent(object):
         c_trg_sample_list = self.create_labels(c_org_sample, self.config.attrs)
         c_trg_sample_list.insert(0, c_org_sample.clone())  # reconstruction
 
-        self.g_lr = self.config.g_lr
-        self.d_lr = self.config.d_lr
+        self.g_lr = self.lr_scheduler_G.get_lr()[0]
+        self.d_lr = self.lr_scheduler_G.get_lr()[0]
 
         start_time = time.time()
         for i in range(self.current_iteration, self.config.max_iters):

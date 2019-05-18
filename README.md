@@ -31,7 +31,7 @@ Please download the [CelebA](http://openaccess.thecvf.com/content_iccv_2015/pape
 - For quickly start, you can simply use the following command to train:
 
   ```console
-  CUDA_VISIBLE_DIVICES=0,1,2,3 python main.py --config ./configs/train_stgan.yaml
+  CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --config ./configs/train_stgan.yaml
   ```
 
 - Or simply run the shell script `train_stgan.sh`:
@@ -73,7 +73,7 @@ Please download the [CelebA](http://openaccess.thecvf.com/content_iccv_2015/pape
 
 ## Acknowledgements
 
-This code refers to the following two projects
+This code refers to the following two projects:
 
 [1] [TensorFlow implementation of STGAN](https://github.com/csmliu/STGAN) 
 

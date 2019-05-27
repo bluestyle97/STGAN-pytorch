@@ -40,12 +40,6 @@ Please download the [CelebA](http://openaccess.thecvf.com/content_iccv_2015/pape
   CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --config ./configs/train_stgan.yaml
   ```
 
-- Or simply run the shell script `train_stgan.sh`:
-
-  ```console
-  sh train_stgan.sh
-  ```
-
 - If you want to modify some hyper-parameters, please edit them in the configuration file `./configs/train_stgan.yaml` following the explanations below:
   - `exp_name`: the name of current experiment.
   - `mode`: 'train' or 'test'.

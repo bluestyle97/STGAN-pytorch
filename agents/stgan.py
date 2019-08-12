@@ -238,7 +238,7 @@ class STGANAgent(object):
                 g_loss_cls = self.classification_loss(out_cls, label_trg)
 
                 # target-to-original domain
-                x_reconst = self.G(x_fake, c_org - c_org)
+                x_reconst = self.G(x_real, c_org - c_org)
                 g_loss_rec = torch.mean(torch.abs(x_real - x_reconst))
 
                 # backward and optimize

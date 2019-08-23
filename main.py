@@ -1,6 +1,6 @@
 import argparse
 
-from agents import *
+from agents import STGANAgent
 from utils.config import *
 
 
@@ -12,8 +12,7 @@ def main():
         help='The path of configuration file in yaml format')
     args = arg_parser.parse_args()
     config = process_config(args.config)
-    agent_class = globals()['{}_agent'.format(config.model_name)]
-    agent = agent_class(config)
+    agent = STGANAgent(config)
     agent.run()
 
 

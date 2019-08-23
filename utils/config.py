@@ -49,7 +49,6 @@ def process_config(yaml_file):
 
     print(' *************************************** ')
     print(' The experiment name is {} '.format(config.exp_name))
-    print(' The experiment model is {} '.format(config.model_name))
     print(' The experiment mode is {} '.format(config.mode))
     print(' *************************************** ')
 

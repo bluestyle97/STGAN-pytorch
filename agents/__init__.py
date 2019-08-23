@@ -1,1 +1,1 @@
-from .stgan import STGANAgent as stgan_agent
+from .stgan import STGANAgent

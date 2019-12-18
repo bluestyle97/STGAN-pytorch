@@ -9,6 +9,7 @@ An unofficial **PyTorch**  implementation of [**STGAN: A Unified Selective Trans
 - [torchsummary](https://github.com/sksq96/pytorch-summary)
 - [tqdm](https://github.com/tqdm/tqdm)
 - [Pillow](https://github.com/python-pillow/Pillow)
+- [easydict](https://github.com/makinacorpus/easydict)
 
 ## Sample
 
